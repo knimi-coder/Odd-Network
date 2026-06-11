@@ -404,6 +404,129 @@ footer {
 .trial-btn-sub { font-size: 0.68rem; opacity: 0.85; letter-spacing: 0.05em; }
 .trial-btn-main { font-size: 0.95rem; font-weight: 700; letter-spacing: 0.02em; }
 
+/* RECRUIT SECTION */
+.recruit-live-wrap { text-align: center; margin-bottom: 1.5rem; }
+.recruit-live-badge {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  background: rgba(239,68,68,0.12); border: 1px solid rgba(239,68,68,0.4);
+  color: #f87171; padding: 0.4rem 1.1rem; border-radius: 100px;
+  font-size: 0.72rem; font-weight: 700; letter-spacing: 0.18em;
+  animation: pulse-badge 2s ease-in-out infinite;
+}
+.recruit-live-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: #f87171; flex-shrink: 0;
+  animation: blink 1.2s ease-in-out infinite;
+}
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.2} }
+@keyframes pulse-badge { 0%,100%{box-shadow:0 0 0 0 rgba(239,68,68,0.3)} 50%{box-shadow:0 0 0 6px rgba(239,68,68,0)} }
+
+.recruit-card {
+  max-width: 680px; margin: 0 auto;
+  background: var(--card); border: 1px solid rgba(59,130,246,0.3);
+  border-radius: 20px; padding: clamp(2rem,5vw,3rem);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 40px rgba(59,130,246,0.08);
+}
+.recruit-header { text-align: center; margin-bottom: 2rem; }
+.recruit-eyebrow {
+  font-size: 0.7rem; font-weight: 700; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--accent2); margin-bottom: 0.8rem;
+}
+.recruit-title {
+  font-family: 'Inter','Noto Sans JP',sans-serif;
+  font-size: clamp(2rem,6vw,3.2rem); font-weight: 800;
+  line-height: 1.15; letter-spacing: -0.02em; margin-bottom: 1rem;
+}
+.recruit-title-blue {
+  background: linear-gradient(90deg,#60a5fa,#818cf8);
+  -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+}
+.recruit-subtitle {
+  font-size: clamp(0.88rem,2vw,0.95rem); color: var(--gray2);
+  line-height: 1.9; font-weight: 300;
+}
+.recruit-info-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 1px; background: var(--border);
+  border-radius: 12px; overflow: hidden; margin-bottom: 2rem;
+}
+@media (max-width:480px) { .recruit-info-grid { grid-template-columns: 1fr; } }
+.recruit-info-item {
+  background: rgba(255,255,255,0.03);
+  padding: 1.1rem 1.3rem;
+}
+.recruit-info-deadline { background: rgba(239,68,68,0.06); }
+.recruit-info-label {
+  font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em;
+  color: var(--gray); text-transform: uppercase; margin-bottom: 0.3rem;
+}
+.recruit-info-val { font-size: 1rem; font-weight: 700; color: var(--white); }
+.recruit-deadline-val { color: #f87171; font-size: 1.1rem; }
+.recruit-cta-wrap { text-align: center; }
+.recruit-cta-note {
+  font-size: 0.82rem; color: var(--gray); margin-bottom: 1rem; font-weight: 300;
+}
+.recruit-cta-btn {
+  display: inline-flex; align-items: center; gap: 0.9rem;
+  background: linear-gradient(135deg,#833ab4,#fd1d1d,#fcb045);
+  color: #fff; padding: 1rem 2rem; border-radius: 12px;
+  text-decoration: none; transition: opacity 0.2s, transform 0.15s;
+  max-width: 380px; width: 100%;
+}
+.recruit-cta-btn:hover { opacity: 0.9; transform: translateY(-2px); }
+.recruit-btn-label { display: flex; flex-direction: column; text-align: left; }
+.recruit-btn-sub { font-size: 0.72rem; opacity: 0.88; letter-spacing: 0.04em; }
+.recruit-btn-main { font-size: 1rem; font-weight: 800; }
+
+/* JOIN FLOW */
+.join-flow {
+  max-width: 620px; margin: 0 auto;
+  display: flex; flex-direction: column; align-items: stretch; gap: 0;
+}
+.join-step {
+  display: flex; gap: 1.2rem; align-items: flex-start;
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: 14px; padding: 1.6rem 1.5rem;
+  backdrop-filter: blur(8px);
+  transition: border-color 0.2s;
+}
+.join-step:hover { border-color: rgba(59,130,246,0.4); }
+.join-step-last { border-color: rgba(59,130,246,0.3); background: rgba(59,130,246,0.07); }
+.join-step-num {
+  font-family: 'Inter', sans-serif; font-size: 2rem; font-weight: 800;
+  color: rgba(255,255,255,0.08); line-height: 1; flex-shrink: 0; width: 2.5rem;
+  padding-top: 0.2rem;
+}
+.join-step-body { flex: 1; }
+.join-step-icon { font-size: 1.4rem; margin-bottom: 0.4rem; }
+.join-step-title { font-weight: 700; font-size: 1rem; margin-bottom: 0.4rem; color: var(--white); }
+.join-step-text { font-size: 0.84rem; color: var(--gray2); line-height: 1.8; margin-bottom: 0.8rem; }
+.join-step-text strong { color: var(--accent2); font-weight: 600; }
+.join-step-btn {
+  display: inline-block;
+  background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045);
+  color: #fff; padding: 0.55rem 1.2rem; border-radius: 8px;
+  font-size: 0.82rem; font-weight: 700; text-decoration: none;
+  transition: opacity 0.2s, transform 0.15s;
+}
+.join-step-btn:hover { opacity: 0.88; transform: translateY(-1px); }
+.join-arrow {
+  text-align: center; font-size: 1.3rem; color: rgba(255,255,255,0.2);
+  padding: 0.5rem 0; line-height: 1;
+}
+.join-cta-btn {
+  display: inline-flex; align-items: center; gap: 0.9rem;
+  background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045);
+  color: #fff; padding: 1rem 2rem; border-radius: 12px;
+  text-decoration: none; transition: opacity 0.2s, transform 0.15s;
+  max-width: 360px; width: 100%;
+}
+.join-cta-btn:hover { opacity: 0.9; transform: translateY(-2px); }
+.join-cta-label { display: flex; flex-direction: column; text-align: left; }
+.join-cta-sub { font-size: 0.7rem; opacity: 0.85; letter-spacing: 0.06em; }
+.join-cta-main { font-size: 1rem; font-weight: 800; letter-spacing: 0.01em; }
+
 /* FOUNDER TIMEREX */
 .founder-links { margin-top: 1.2rem; }
 .founder-timerex {
@@ -695,20 +818,6 @@ footer {
   </div>
 </section>
 
-<!-- PHASES -->
-<section class="sec-bg-light" id="goals">
-  <div class="container">
-    <div class="section-eyebrow">定量目標</div>
-    <h2 class="section-h2">3フェーズで成長する</h2>
-    <p class="section-lead">初期は非営利・実証重視でスタート。需要検証からコミュニティの型化、そして拡大へ。</p>
-    <div class="phases-grid">
-      <div class="phase-block"><div class="phase-label">Phase 1</div><div class="phase-period">最初の3か月 / 初期検証期</div><div class="phase-big">10〜20名</div><div class="phase-desc">累計参加者 / 月間約10名</div><div class="phase-sat">★ 4.0以上 / 5</div></div>
-      <div class="phase-block active"><div class="phase-label">Phase 2</div><div class="phase-period">半年後 / 基盤構築期</div><div class="phase-big">30〜50名</div><div class="phase-desc">累計参加者 / 月間約20名</div><div class="phase-sat">★ 4.2以上 / 5</div></div>
-      <div class="phase-block"><div class="phase-label">Phase 3</div><div class="phase-period">1年後 / 拡大準備期</div><div class="phase-big">100名〜</div><div class="phase-desc">累計参加者 / 月間30名〜</div><div class="phase-sat">★ 4.5以上 / 5</div></div>
-    </div>
-  </div>
-</section>
-
 <!-- FOUNDERS -->
 <section class="sec-bg-dark" id="founders">
   <div class="container">
@@ -752,55 +861,130 @@ footer {
   </div>
 </section>
 
-<!-- TRIAL BANNER (カウンセリング・体験会) -->
-<section class="sec-bg-dark" id="trial">
+<!-- 一期生募集 -->
+<section class="sec-bg-dark" id="recruit">
   <div class="container">
-    <div class="trial-banner" style="margin-top:0;">
-      <div class="trial-banner-inner">
-        <div class="trial-text-wrap">
-          <div class="trial-eyebrow">まずは気軽に話しましょう</div>
-          <div class="trial-title">無料カウンセリング・体験会を受け付けています</div>
-          <div class="trial-sub">参加前に不安なこと、気になることを何でも聞かせてください。インスタDMやLINEからお気軽にご連絡どうぞ。</div>
-        </div>
-        <div class="trial-btns">
-          <a href="https://www.instagram.com/onet.odd?igsh=MXNncjk0cjJmZzhj&utm_source=qr" target="_blank" rel="noopener" class="trial-btn trial-btn-ig">
-            <span class="trial-btn-icon">📸</span>
-            <span class="trial-btn-label">
-              <span class="trial-btn-sub">体験会・相談はこちら</span>
-              <span class="trial-btn-main">Instagram DM</span>
-            </span>
-          </a>
-          <a href="https://line.me/ti/g2/EvPag3GmfNg3fhtlQSJQmUYc6xJFE0G4d1epQg?utm_source=invitation&utm_medium=link_copy&utm_campaign=default" target="_blank" rel="noopener" class="trial-btn trial-btn-line">
-            <span class="trial-btn-icon">💬</span>
-            <span class="trial-btn-label">
-              <span class="trial-btn-sub">体験会・相談はこちら</span>
-              <span class="trial-btn-main">LINE グループ</span>
-            </span>
-          </a>
-        </div>
+
+    <!-- 募集中バッジ -->
+    <div class="recruit-live-wrap">
+      <div class="recruit-live-badge">
+        <span class="recruit-live-dot"></span>
+        NOW RECRUITING
       </div>
     </div>
+
+    <div class="recruit-card">
+      <div class="recruit-header">
+        <div class="recruit-eyebrow">Odd Network 一期生</div>
+        <h2 class="recruit-title">一期生、<span class="recruit-title-blue">募集中。</span></h2>
+        <p class="recruit-subtitle">
+          2025年8月1日〜10月1日の活動に参加してくれる仲間を募集しています。<br>
+          最初の一期生として、O-Netを一緒につくっていきましょう。
+        </p>
+      </div>
+
+      <div class="recruit-info-grid">
+        <div class="recruit-info-item">
+          <div class="recruit-info-label">活動期間</div>
+          <div class="recruit-info-val">2025年 8月1日 〜 10月1日</div>
+        </div>
+        <div class="recruit-info-item recruit-info-deadline">
+          <div class="recruit-info-label">⚠️ 締切</div>
+          <div class="recruit-info-val recruit-deadline-val">7月25日まで</div>
+        </div>
+        <div class="recruit-info-item">
+          <div class="recruit-info-label">対象</div>
+          <div class="recruit-info-val">挑戦したいすべての学生</div>
+        </div>
+        <div class="recruit-info-item">
+          <div class="recruit-info-label">参加費</div>
+          <div class="recruit-info-val">無料</div>
+        </div>
+      </div>
+
+      <div class="recruit-cta-wrap">
+        <p class="recruit-cta-note">参加方法は下のセクションへ ↓</p>
+        <a href="#contact" class="recruit-cta-btn">
+          <span style="font-size:1.2rem;">📸</span>
+          <span class="recruit-btn-label">
+            <span class="recruit-btn-sub">Instagram DMで「O-Net」と送る</span>
+            <span class="recruit-btn-main">今すぐ参加を申し込む</span>
+          </span>
+        </a>
+      </div>
+    </div>
+
   </div>
 </section>
 
-<!-- CONTACT -->
+<!-- CONTACT / JOIN FLOW -->
 <section class="sec-bg-dark" id="contact">
   <div class="container">
-    <div class="section-eyebrow">お問い合わせ</div>
+    <div class="section-eyebrow">参加方法</div>
     <h2 class="section-h2">一緒に挑戦しませんか</h2>
-    <p class="section-lead">O-Netへの参加申込・連携のご相談は、公式SNS・LINEよりお気軽にどうぞ。</p>
-    <div class="contact-grid">
-      <div class="contact-card">
-        <h4>Instagramをフォロー</h4>
-        <p>最新のイベント情報・登壇者インタビュー・活動報告を随時発信中。</p>
-        <a href="https://www.instagram.com/onet.odd?igsh=MXNncjk0cjJmZzhj&utm_source=qr" target="_blank" rel="noopener" class="btn-sm">@onet.odd をフォロー</a>
+    <p class="section-lead">参加はInstagram DMから。たった4ステップでOdd Networkのメンバーになれます。</p>
+
+    <!-- ステップフロー -->
+    <div class="join-flow">
+
+      <div class="join-step">
+        <div class="join-step-num">01</div>
+        <div class="join-step-body">
+          <div class="join-step-icon">📸</div>
+          <div class="join-step-title">Instagram DMで「O-Net」と送る</div>
+          <div class="join-step-text">公式Instagram <strong>@onet.odd</strong> にDMで「O-Net」とメッセージを送ってください。それだけでOKです。</div>
+          <a href="https://www.instagram.com/onet.odd?igsh=MXNncjk0cjJmZzhj&utm_source=qr" target="_blank" rel="noopener" class="join-step-btn">
+            @onet.odd にDMする →
+          </a>
+        </div>
       </div>
-      <div class="contact-card">
-        <h4>LINEグループに参加</h4>
-        <p>イベント参加申込・最新情報の受け取りはLINEグループから。お気軽にどうぞ。</p>
-        <a href="https://line.me/ti/g2/EvPag3GmfNg3fhtlQSJQmUYc6xJFE0G4d1epQg?utm_source=invitation&utm_medium=link_copy&utm_campaign=default" target="_blank" rel="noopener" class="btn-sm-outline">LINEグループに参加</a>
+
+      <div class="join-arrow">↓</div>
+
+      <div class="join-step">
+        <div class="join-step-num">02</div>
+        <div class="join-step-body">
+          <div class="join-step-icon">💬</div>
+          <div class="join-step-title">事前カウンセリング</div>
+          <div class="join-step-text">創設者と1対1でラフにお話しします。不安なこと・気になることを何でも聞かせてください。あなたに合った参加スタイルを一緒に考えます。</div>
+        </div>
       </div>
+
+      <div class="join-arrow">↓</div>
+
+      <div class="join-step">
+        <div class="join-step-num">03</div>
+        <div class="join-step-body">
+          <div class="join-step-icon">💚</div>
+          <div class="join-step-title">LINEグループに参加</div>
+          <div class="join-step-text">カウンセリング後、O-NetのLINEグループにご招待します。イベント情報・仲間との交流はここから始まります。</div>
+        </div>
+      </div>
+
+      <div class="join-arrow">↓</div>
+
+      <div class="join-step join-step-last">
+        <div class="join-step-num">04</div>
+        <div class="join-step-body">
+          <div class="join-step-icon">✦</div>
+          <div class="join-step-title">Odd Network メンバーに！</div>
+          <div class="join-step-text">ようこそ、O-Netへ。交流会・メンタリング・仲間との繋がりを通して、あなたの挑戦の第一歩を踏み出しましょう。</div>
+        </div>
+      </div>
+
+    </div><!-- /join-flow -->
+
+    <!-- Instagram CTAボタン -->
+    <div style="text-align:center; margin-top: 3rem;">
+      <a href="https://www.instagram.com/onet.odd?igsh=MXNncjk0cjJmZzhj&utm_source=qr" target="_blank" rel="noopener" class="join-cta-btn">
+        <span style="font-size:1.3rem;">📸</span>
+        <span class="join-cta-label">
+          <span class="join-cta-sub">まずはここから</span>
+          <span class="join-cta-main">@onet.odd に「O-Net」とDM</span>
+        </span>
+      </a>
     </div>
+
   </div>
 </section>
 
