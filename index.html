@@ -175,18 +175,33 @@
   <h2>Contact Us</h2>
   <div class="divider"></div>
   <p class="lead">気軽にご連絡ください</p>
-  <form onsubmit="return false;">
-    <input class="field" type="text" placeholder="お名前">
-    <input class="field" type="email" placeholder="メールアドレス *">
-    <textarea class="field" placeholder="メッセージ"></textarea>
+  <form id="contact-form" onsubmit="sendMail(event)">
+    <input class="field" id="cf-name" type="text" placeholder="お名前">
+    <input class="field" id="cf-email" type="email" placeholder="メールアドレス *" required>
+    <textarea class="field" id="cf-message" placeholder="メッセージ"></textarea>
     <label class="agree">
       <input type="checkbox">
       最新情報やイベントのお知らせを受け取る
     </label>
     <div class="send-row">
-      <button class="send-btn">送信する</button>
+      <button class="send-btn" type="submit">送信する</button>
     </div>
   </form>
+  <script>
+    function sendMail(e){
+      e.preventDefault();
+      var name = document.getElementById('cf-name').value || '(未記入)';
+      var email = document.getElementById('cf-email').value || '(未記入)';
+      var message = document.getElementById('cf-message').value || '(未記入)';
+      var subject = encodeURIComponent('Onet お問い合わせ - ' + name);
+      var body = encodeURIComponent(
+        'お名前: ' + name + '\n' +
+        'メールアドレス: ' + email + '\n\n' +
+        'メッセージ:\n' + message
+      );
+      window.location.href = 'mailto:kokiurita@gmail.com?subject=' + subject + '&body=' + body;
+    }
+  </script>
 </section>
 
 <footer>© 2026 O-Net — 最初の大学は、まだ誰も見たことがない。</footer>
