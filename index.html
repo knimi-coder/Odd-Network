@@ -148,6 +148,45 @@
     cursor:pointer;transition:opacity .25s ease;
   }
   .send-btn:hover{opacity:.85;}
+  .send-btn:disabled{opacity:.5;cursor:default;}
+
+  .cf-error{
+    margin-top:18px;text-align:center;
+    font-size:.82rem;color:#d98a8a;
+    min-height:1.2em;
+  }
+
+  .cf-success{
+    display:none;
+    max-width:480px;margin:0 auto;
+    flex-direction:column;align-items:center;
+    text-align:center;
+    padding:20px 0 10px;
+  }
+  .cf-success.show{
+    display:flex;
+    animation:fadeUpIn .6s ease forwards;
+  }
+  .cf-check{
+    width:64px;height:64px;border-radius:50%;
+    border:1px solid var(--gold);
+    display:flex;align-items:center;justify-content:center;
+    font-size:1.6rem;color:var(--gold);
+    margin-bottom:24px;
+  }
+  .cf-success h3{
+    font-family:'Shippori Mincho',serif;
+    font-weight:500;font-size:1.4rem;
+    color:var(--ink);margin-bottom:16px;
+    letter-spacing:.04em;
+  }
+  .cf-success p{
+    font-size:.9rem;color:var(--ink-dim);line-height:1.9;
+  }
+  @keyframes fadeUpIn{
+    from{opacity:0;transform:translateY(14px);}
+    to{opacity:1;transform:translateY(0);}
+  }
 
   footer{
     text-align:center;padding:36px 20px;
@@ -175,32 +214,63 @@
   <h2>Contact Us</h2>
   <div class="divider"></div>
   <p class="lead">気軽にご連絡ください</p>
-  <form id="contact-form" onsubmit="sendMail(event)">
-    <input class="field" id="cf-name" type="text" placeholder="お名前">
-    <input class="field" id="cf-email" type="email" placeholder="メールアドレス *" required>
-    <textarea class="field" id="cf-message" placeholder="メッセージ"></textarea>
+
+  <form id="contact-form">
+    <input class="field" id="cf-name" name="name" type="text" placeholder="お名前">
+    <input class="field" id="cf-email" name="email" type="email" placeholder="メールアドレス *" required>
+    <textarea class="field" id="cf-message" name="message" placeholder="メッセージ"></textarea>
     <label class="agree">
       <input type="checkbox">
       最新情報やイベントのお知らせを受け取る
     </label>
     <div class="send-row">
-      <button class="send-btn" type="submit">送信する</button>
+      <button class="send-btn" id="cf-submit" type="submit">送信する</button>
     </div>
+    <p id="cf-error" class="cf-error"></p>
   </form>
+
+  <div id="cf-success" class="cf-success">
+    <div class="cf-check">✓</div>
+    <h3>送信しました</h3>
+    <p>お問い合わせありがとうございます。<br>内容を確認のうえ、追ってご連絡いたします。</p>
+  </div>
+
   <script>
-    function sendMail(e){
+    // Formspree エンドポイント（通知先メール: kokiurita@gmail.com）
+    const FORMSPREE_ENDPOINT = "https://formspree.io/f/mvkoarzo";
+
+    const form = document.getElementById('contact-form');
+    const successBox = document.getElementById('cf-success');
+    const errorBox = document.getElementById('cf-error');
+    const submitBtn = document.getElementById('cf-submit');
+
+    form.addEventListener('submit', async function(e){
       e.preventDefault();
-      var name = document.getElementById('cf-name').value || '(未記入)';
-      var email = document.getElementById('cf-email').value || '(未記入)';
-      var message = document.getElementById('cf-message').value || '(未記入)';
-      var subject = encodeURIComponent('Onet お問い合わせ - ' + name);
-      var body = encodeURIComponent(
-        'お名前: ' + name + '\n' +
-        'メールアドレス: ' + email + '\n\n' +
-        'メッセージ:\n' + message
-      );
-      window.location.href = 'mailto:kokiurita@gmail.com?subject=' + subject + '&body=' + body;
-    }
+      errorBox.textContent = '';
+      submitBtn.disabled = true;
+      submitBtn.textContent = '送信中…';
+
+      const data = new FormData(form);
+
+      try{
+        const res = await fetch(FORMSPREE_ENDPOINT, {
+          method: 'POST',
+          body: data,
+          headers: { 'Accept': 'application/json' }
+        });
+
+        if(res.ok){
+          form.style.display = 'none';
+          successBox.classList.add('show');
+        } else {
+          throw new Error('送信に失敗しました');
+        }
+      } catch(err){
+        errorBox.textContent = '送信できませんでした。しばらくしてから再度お試しください。';
+        submitBtn.disabled = false;
+        submitBtn.textContent = '送信する';
+      }
+    });
   </script>
 </section>
 
