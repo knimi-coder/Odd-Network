@@ -215,7 +215,13 @@
   <div class="divider"></div>
   <p class="lead">気軽にご連絡ください</p>
 
-  <form id="contact-form">
+  <!-- 通常のHTMLフォーム送信（JS/fetchを使わないため、どこに設置しても
+       CORSやセキュリティ制限でブロックされにくい方式）
+       送信先: Google Apps Script（スプレッドシートへの記録 + oddnetwork@outlook.jp への通知） -->
+  <form id="contact-form"
+        action="https://script.google.com/macros/s/AKfycbwAL8SjbTHjj-kN12_-YVa7eV5AdC7y94r5gaLA1T5Ep6Mf0p6BY_aPTp2X7UYY7Ok/exec"
+        method="POST"
+        target="hidden_iframe">
     <input class="field" id="cf-name" name="name" type="text" placeholder="お名前">
     <input class="field" id="cf-email" name="email" type="email" placeholder="メールアドレス *" required>
     <textarea class="field" id="cf-message" name="message" placeholder="メッセージ"></textarea>
@@ -226,8 +232,10 @@
     <div class="send-row">
       <button class="send-btn" id="cf-submit" type="submit">送信する</button>
     </div>
-    <p id="cf-error" class="cf-error"></p>
   </form>
+
+  <!-- 送信後の画面遷移を避けるための非表示iframe -->
+  <iframe name="hidden_iframe" style="display:none;"></iframe>
 
   <div id="cf-success" class="cf-success">
     <div class="cf-check">✓</div>
@@ -236,41 +244,18 @@
   </div>
 
   <script>
-    // ▼ Google Apps Scriptの「Web App」デプロイ後に発行されるURLに差し替えてください
-    // （通知先メール: oddnetwork@outlook.jp / スプレッドシートにも自動で記録されます）
-    const FORMSPREE_ENDPOINT = "YOUR_APPS_SCRIPT_WEB_APP_URL";
-
     const form = document.getElementById('contact-form');
     const successBox = document.getElementById('cf-success');
-    const errorBox = document.getElementById('cf-error');
     const submitBtn = document.getElementById('cf-submit');
 
-    form.addEventListener('submit', async function(e){
-      e.preventDefault();
-      errorBox.textContent = '';
+    form.addEventListener('submit', function(){
       submitBtn.disabled = true;
       submitBtn.textContent = '送信中…';
-
-      const data = new FormData(form);
-
-      try{
-        const res = await fetch(FORMSPREE_ENDPOINT, {
-          method: 'POST',
-          body: data,
-          headers: { 'Accept': 'application/json' }
-        });
-
-        if(res.ok){
-          form.style.display = 'none';
-          successBox.classList.add('show');
-        } else {
-          throw new Error('送信に失敗しました');
-        }
-      } catch(err){
-        errorBox.textContent = '送信できませんでした。しばらくしてから再度お試しください。';
-        submitBtn.disabled = false;
-        submitBtn.textContent = '送信する';
-      }
+      // 非表示iframeへネイティブ送信された後、少し待って完了画面に切り替える
+      setTimeout(function(){
+        form.style.display = 'none';
+        successBox.classList.add('show');
+      }, 700);
     });
   </script>
 </section>
